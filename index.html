@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OJI STORE TOP UP GAME MURAH</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #4b6cb7, #182848);
+      color: #fff;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 20px;
+      margin-top: 30px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+      position: relative;
+      z-index: 1;
+    }
+    h2, h3 {
+      text-align: center;
+      font-family: 'Bebas Neue', sans-serif;
+      color: #fff;
+    }
+    h2 {
+      font-size: 36px;
+      margin-bottom: 0;
+    }
+    h3 {
+      font-size: 24px;
+      margin-top: 0;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+    select, input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    .button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 10px;
+      background-color: #5A47FF;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .button:hover {
+      background-color: #4333CC;
+    }
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      20% { transform: translateX(-8px); }
+      40% { transform: translateX(8px); }
+      60% { transform: translateX(-8px); }
+      80% { transform: translateX(8px); }
+      100% { transform: translateX(0); }
+    }
+    .shake {
+      animation: shake 0.5s;
+      border: 2px solid #ff4c4c !important;
+      background-color: #ffcccc;
+    }
+    .social-links a {
+      color: inherit;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      transition: color 0.3s ease;
+    }
+    .social-links a:hover {
+      color: #ffcc00;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #ccc;
+    }
+    .footer a {
+      color: #25D366;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    /* Icon menu styling */
+    .menu-icon {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      background-color: #1b1464;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 0 10px rgba(90, 71, 255, 0.7);
+    }
+    .menu-icon span {
+      display: block;
+      width: 30px;
+      height: 4px;
+      background-color: white;
+      margin: 5px 0;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+    /* When active (clicked), transform lines to an X */
+    .menu-icon.active span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+    .menu-icon.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-icon.active span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* Dropdown menu container */
+    .dropdown-menu {
+      position: fixed;
+      top: 80px;
+      left: 20px;
+      background: rgba(27, 20, 100, 0.9);
+      border-radius: 20px;
+      width: 200px;
+      box-shadow: 0 0 15px rgba(90, 71, 255, 0.7);
+      padding: 15px;
+      display: none;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 999;
+    }
+    .dropdown-menu.show {
+      display: flex;
+    }
+    .dropdown-menu a {
+      color: white;
+      text-decoration: none;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background-color: #5A47FF;
+      transition: background-color 0.3s ease;
+      text-align: center;
+    }
+    .dropdown-menu a:hover {
+      background-color: #4333CC;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menu icon -->
+  <div class="menu-icon" id="menuIcon" title="Menu Fitur">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Dropdown menu -->
+  <div class="dropdown-menu" id="dropdownMenu">
+    <a href=""></a>
+    <a href="#feature2"></a>
+    <a href="#feature3"></a>
+    <a href="#feature4"></a>
+  </div>
+
+  <div class="container">
+    <h2>OJI STORE TOP UP</h2>
+    <h3>GAME MURAH</h3>
+
+    <label for="game">Pilih Game</label>
+    <select id="game" onchange="updateDiamondOptions()">
+      <option value="ml">Mobile Legends</option>
+      <option value="ff">Free Fire</option>
+    </select>
+
+    <label for="diamond">Jumlah Diamond</label>
+    <select id="diamond"></select>
+
+    <label for="id">ID Game</label>
+    <input type="text" id="id" placeholder="Masukkan ID Game" maxlength="25" oninput="validateNumberInput(this, 25)" />
+
+    <label for="server">ID Server</label>
+    <input type="text" id="server" placeholder="Masukkan ID Server" maxlength="10" oninput="validateNumberInput(this, 10)" />
+
+    <label for="nickname">Nickname Game</label>
+    <input type="text" id="nickname" placeholder="Masukkan Nickname Game" />
+
+    <label for="metode">Metode Pembayaran</label>
+    <select id="metode">
+      <option>DANA</option>
+      <option>OVO</option>
+      <option>GoPay</option>
+      <option>ShopeePay</option>
+      <option>Pulsa Telkomsel</option>
+    </select>
+
+    <button class="button" onclick="order('whatsapp')">Order via WhatsApp</button>
+    <button class="button" onclick="order('instagram')">Order via Instagram</button>
+    <button class="button" onclick="order('telegram')">Order via Telegram</button>
+    <button class="button" onclick="order('facebook')">Order via Facebook</button>
+    <button class="button" onclick="order('email')">Order via Email</button>
+    <button class="button" onclick="order('discord')">Order via Discord</button>
+  </div>
+
+  <div class="container" style="margin-top: 20px; background: rgba(0,0,0,0.4);">
+    <h3>Follow Media Sosial Kami</h3>
+    <div class="social-links" style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px;">
+      <a href="https://chat.whatsapp.com/BzDtqCnJfeM3Ydj2F0PNP3" target="_blank" style="color: #25D366;">
+        <img src="https://cdn-icons-png.flaticon.com/24/733/733585.png" alt="WA Group" /> Grup WA
+      </a>
+      <a href="https://whatsapp.com/channel/0029VazPVqIHltYHwnowVf3w" target="_blank" style="color: #128C7E;">
+        <img src="https://cdn-icons-png.flaticon.com/24/733/733585.png" alt="WA Channel" /> Channel WA
+      </a>
+      <a href="https://www.tiktok.com/@username_store" target="_blank" style="color: #000000;">
+        <img src="https://cdn-icons-png.flaticon.com/24/3046/3046123.png" alt="TikTok" /> TikTok
+      </a>
+      <a href="https://instagram.com/username_store" target="_blank" style="color: #E1306C;">
+        <img src="https://cdn-icons-png.flaticon.com/24/2111/2111463.png" alt="Instagram" /> Instagram
+      </a>
+      <a href="https://t.me/username_store" target="_blank" style="color: #0088cc;">
+        <img src="https://cdn-icons-png.flaticon.com/24/2111/2111646.png" alt="Telegram" /> Telegram
+      </a>
+      <a href="https://youtube.com/@username_store" target="_blank" style="color: #FF0000;">
+        <img src="https://cdn-icons-png.flaticon.com/24/1384/1384060.png" alt="YouTube" /> YouTube
+      </a>
+      <a href="https://facebook.com/username_store" target="_blank" style="color: #1877F2;">
+        <img src="https://cdn-icons-png.flaticon.com/24/733/733547.png" alt="Facebook" /> Facebook
+      </a>
+      <a href="https://discord.gg/yourinvite" target="_blank" style="color: #7289da;">
+        <img src="https://cdn-icons-png.flaticon.com/24/2111/2111370.png" alt="Discord" /> Discord
+      </a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 Oji STORE TOPUP MURAH. All rights reserved.</p>
+    <p>Kontak WhatsApp: <a href="https://wa.me/6281327138819" target="_blank">Klik Disini</a></p>
+  </div>
+
+  <script>
+    const diamondOptions = {
+      ff: [
+        "3 Diamond - Rp1.300",
+        "5 Diamond - Rp2.000",
+        "12 Diamond - Rp3.500",
+        "70 Diamond - Rp8.000",
+        "140 Diamond - Rp15.500"
+      ],
+      ml: [
+        "5 Diamond - Rp1.500",
+        "12 Diamond - Rp3.800",
+        "86 Diamond - Rp19.500",
+        "172 Diamond - Rp38.000",
+        "257 Diamond - Rp57.000"
+      ]
+    };
+
+    function updateDiamondOptions() {
+      const game = document.getElementById("game").value;
+      const diamondSelect = document.getElementById("diamond");
+      diamondSelect.innerHTML = "";
+      diamondOptions[game].forEach(option => {
+        const opt = document.createElement("option");
+        opt.value = option;
+        opt.textContent = option;
+        diamondSelect.appendChild(opt);
+      });
+    }
+
+    function validateNumberInput(input, maxLength) {
+      const val = input.value;
+      if (!/^\d*$/.test(val)) {
+        input.classList.add('shake');
+        setTimeout(() => {
+          input.classList.remove('shake');
+        }, 500);
+        input.value = val.replace(/\D/g, '');
+      }
+      if (val.length > maxLength) {
+        input.value = val.slice(0, maxLength);
+      }
+    }
+
+    function order(channel) {
+      const game = document.getElementById("game").value;
+      const diamond = document.getElementById("diamond").value;
+      const idGame = document.getElementById("id").value;
+      const server = document.getElementById("server").value;
+      const nickname = document.getElementById("nickname").value.trim();
+      const metode = document.getElementById("metode").value;
+
+      if (!idGame || !server || !nickname) {
+        alert('Mohon isi ID Game, ID Server, dan Nickname Game dengan benar.');
+        return;
+      }
+
+      const pesan = 
+        `Kak Mau TopUp\n` +
+        `Game: ${game === 'ff' ? 'Free Fire' : 'Mobile Legends'}\n` +
+        `Diamond: ${diamond}\n` +
+        `ID Game: ${idGame}\n` +
+        `ID Server: ${server}\n` +
+        `Nickname Game: ${nickname}\n` +
+        `Metode Pembayaran: ${metode}`;
+
+      if (channel === 'whatsapp') {
+        window.open(`https://wa.me/6281327138819?text=${encodeURIComponent(pesan)}`, '_blank');
+      } else if (channel === 'instagram') {
+        alert("Silakan hubungi via Instagram: @username_seller\nPesan yang ingin dikirim:\n" + pesan);
+        window.open(`https://instagram.com/username_seller`, '_blank');
+      } else if (channel === 'telegram') {
+        alert("Silakan hubungi via Telegram: @username_seller\nPesan yang ingin dikirim:\n" + pesan);
+        window.open(`https://t.me/username_seller`, '_blank');
+      } else if (channel === 'facebook') {
+        alert("Silakan hubungi via Facebook: username_seller\nPesan yang ingin dikirim:\n" + pesan);
+        window.open(`https://facebook.com/username_seller`, '_blank');
+      } else if (channel === 'email') {
+        const subject = encodeURIComponent("Order Top Up " + (game === 'ff' ? 'Free Fire' : 'Mobile Legends'));
+        const body = encodeURIComponent(pesan);
+        window.location.href = `mailto:mlbbsaya1008110@gmail.com?subject=${subject}&body=${body}`;
+      } else if (channel === 'discord') {
+        alert("Silakan kirim pesan ke server Discord kami.\nPesan yang ingin dikirim:\n" + pesan);
+        window.open(`https://discord.gg/yourinvite`, '_blank');
+      }
+    }
+
+    // Toggle dropdown menu on icon click
+    const menuIcon = document.getElementById('menuIcon');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    menuIcon.addEventListener('click', () => {
+      menuIcon.classList.toggle('active');
+      dropdownMenu.classList.toggle('show');
+    });
+
+    // Close dropdown if clicked outside
+    window.addEventListener('click', function(e) {
+      if (!menuIcon.contains(e.target) && !dropdownMenu.contains(e.target)) {
+        menuIcon.classList.remove('active');
+        dropdownMenu.classList.remove('show');
+      }
+    });
+
+    window.onload = updateDiamondOptions;
+  </script>
+</body>
+</html>
