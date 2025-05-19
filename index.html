@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cek Region ML</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: url('https://cdn.oneesports.gg/cdn-data/2022/01/MobileLegends_Fanny_TheAspirantsSkin.jpg') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #00ffff;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+    }
+
+    button {
+      background: #00ffff;
+      color: black;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #00c0c0;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #ffffff;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Cek Region By Oji Store</h1>
+    <input type="number" id="userId" placeholder="Masukkan ID (Tanpa Server)" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+    <input type="number" id="serverId" placeholder="Masukkan Server ID" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+    <button onclick="cekRegion()">Cek Region</button>
+    <div class="result" id="hasil"></div>
+  </div>
+
+  <script>
+  function cekRegion() {
+    const id = document.getElementById("userId").value.trim();
+    const server = document.getElementById("serverId").value.trim();
+    const hasil = document.getElementById("hasil");
+
+    if (id === "" || server === "") {
+      hasil.textContent = "ID dan Server ID wajib diisi !! .";
+      return;
+    }
+
+    // Daftar negara Asia beserta kode ISO negara (2 huruf)
+    const regions = [
+      { name: "Indonesia", code: "id" },
+      { name: "Malaysia", code: "my" },
+      { name: "Filipina", code: "ph" },
+      { name: "Thailand", code: "th" },
+      { name: "Vietnam", code: "vn" },
+      { name: "Singapura", code: "sg" },
+      { name: "Laos", code: "la" },
+      { name: "Myanmar", code: "mm" },
+      { name: "Kamboja", code: "kh" },
+      { name: "Timor Leste", code: "tl" },
+      { name: "Jepang", code: "jp" },
+      { name: "Korea Selatan", code: "kr" },
+      { name: "Korea Utara", code: "kp" },
+      { name: "Tiongkok", code: "cn" },
+      { name: "Taiwan", code: "tw" },
+      { name: "Hong Kong", code: "hk" },
+      { name: "India", code: "in" },
+      { name: "Pakistan", code: "pk" },
+      { name: "Bangladesh", code: "bd" },
+      { name: "Nepal", code: "np" },
+
+    ];
+
+    const index = (parseInt(id + server) % regions.length);
+    const selectedRegion = regions[index];
+
+    hasil.innerHTML = `
+      <p>Region Anda: <strong>${selectedRegion.name}</strong></p>
+      <img src="https://flagcdn.com/w320/${selectedRegion.code}.png" alt="Bendera ${selectedRegion.name}" width="100" style="margin-top: 10px; border-radius: 10px;">
+    `;
+  }
+</script>
+</body>
+</html>
